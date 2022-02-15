@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+<main>
+  <section class="login">
+    <h2>Login</h2>
+    <form action="/users/login" method="POST">
+      <% if(error) { %>
+      <p><%= error %></p>
+      <% } %>
+      <input type="email" name="email" placeholder="Email" />
+      <input type="password" name="password" placeholder="Password" />
+      <button type="submit">Login</button>
+    </form>
+  </section>
+</main>
+<% include partials/footer %>

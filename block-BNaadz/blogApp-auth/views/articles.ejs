@@ -1,0 +1,16 @@
+<% include partials/header %>
+
+<section class="all-article-box">
+  <% articles.forEach(article => { %>
+  <div class="container all-article">
+    <h3><%= article.title %></h3>
+    <p><%= article.description.slice(0, 250)+"...." %></p>
+    <a href="/articles/<%= article.slug %>">
+      <button class="btn-read">Read</button>
+    </a>
+  </div>
+
+  <% }) %>
+</section>
+
+<% include partials/footer %>

@@ -1,0 +1,283 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* GENERAL STYLE */
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+
+/* HEADER */
+
+header {
+  background-color: rgb(55, 65, 81);
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.navbar a {
+  margin-left: 1rem;
+}
+.btn {
+  background-color: rgb(149, 149, 149);
+  color: white;
+  padding: 0.4rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* INDEX  Page*/
+.index {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.index-page {
+  text-align: center;
+}
+.index h1 {
+  font-size: 2rem;
+  text-align: center;
+  margin: 2rem 0;
+}
+.index a {
+  font-size: 1rem;
+  padding: 0.4rem;
+  background-color: rgb(44, 33, 93);
+}
+
+/* DASHBOARD */
+
+.dashboard h1 {
+  text-align: center;
+}
+
+/* LOGIN */
+.login h2 {
+  text-align: center;
+}
+.login form {
+  width: 500px;
+}
+
+/* SIGNUP */
+
+.signup h2 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+input {
+  padding: 0.4rem;
+  margin: 0.5rem 0;
+}
+
+.btn-submit {
+  padding: 0.4rem;
+}
+
+.comment {
+  margin-left: 0;
+}
+.comment-box {
+  margin: 0.8rem 0;
+}
+.comment-box span a {
+  color: black;
+}
+/* ALL-ARTICLE */
+.all-article-box {
+  background-color: rgb(229, 231, 235);
+  padding: 1rem;
+}
+.all-article {
+  padding: 1rem;
+  background-color: rgb(200, 202, 206);
+  box-shadow: 5px 5px 5px #aaaaaa;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+}
+.all-article h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.btn-read {
+  color: white;
+  margin-top: 0.7rem;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  background-color: rgb(55, 65, 81);
+  border-radius: 10px;
+}
+.detail-article {
+  background-color: rgb(229, 231, 235);
+}
+
+.single-article-box {
+  box-shadow: 5px 5px 5px #aaaaaa;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  padding-bottom: 0.6rem;
+}
+h5 {
+  font-size: 1.3rem;
+  padding-bottom: 0.6rem;
+}
