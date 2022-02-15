@@ -1,27 +1,27 @@
 var mongoose = require("mongoose");
+let bcrypt = require("bcrypt");
+let slugger = require("slug");
+
 var Schema = mongoose.Schema;
 
-var articleSchema = new Schema(
-  {
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
-    slug: String,
-    authorId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  },
-  {
-    timestamps: true,
-  }
-);
+var articleSchema = new Schema({
+  title: String,
+  description: String,
+  tags: [String],
+  likes: { type: Number, default: 0 },
+  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+  author: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  slug: { type: String, unique: true },
+});
 
 articleSchema.pre("save", function (next) {
-  let random = Math.floor(Math.random() * 10);
-  let str = this.title.split(" ").join("-").trim().concat(random);
-  this.slug = str;
+  this.slug = slugger(this.title);
+  if (!this.likes) {
+    this.likes = 0;
+  }
   next();
 });
 
-var Article = mongoose.model(`Article`, articleSchema);
+var Article = mongoose.model("Article", articleSchema);
 
 module.exports = Article;

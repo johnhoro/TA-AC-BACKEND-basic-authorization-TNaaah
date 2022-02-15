@@ -1,0 +1,10 @@
+<% include partials/header %>
+<div>
+  <form action="/articles" method="POST">
+    <input type="text" name="title" placeholder="Add Tittle" />
+    <textarea name="description" placeholder="Add Content" rows="10"></textarea>
+    <input type="text" name="tags" placeholder="Add Tags" />
+    <button>Add Article</button>
+  </form>
+</div>
+<% include partials/footer %>

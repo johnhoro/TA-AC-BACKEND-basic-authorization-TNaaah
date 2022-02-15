@@ -1,0 +1,12 @@
+<% include partials/header %>
+
+<main>
+  <section class="dashboard">
+    <h1>Welcome <%= user.firstname+` `+user.lastname %></h1>
+  </section>
+</main>
+<section>
+  <a href="/articles"> View All Articles </a>
+  <a href="/users/logout">Logout</a>
+</section>
+<% include partials/footer %>
