@@ -1,40 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="../stylesheets/style.css" />
-  </head>
-  <body class="home-index">
-    <header>
-      <div class="container header">
-        <a href="/">Home</a>
-        <nav class="navbar">
-          <ul>
-            <li>
-              <a href="/article"> List Of Article </a>
-            </li>
-            <%if(user){%>
-            <li>
-              <a href="/article/new"> Add Article </a>
-            </li>
-            <li><a href="/users/logout">logout</a></li>
-            <li><a href=""><%= user.fullName() %> </a></li>
-            <%}else{ %>
-            <li>
-              <a href="/users/signup"> Signup </a>
-            </li>
-            <li>
-              <a href="/users/login"> Login </a>
-            </li>
-            <%}%>
-          </ul>
-        </nav>
-      </div>
-    </header>
-    <main>
-      <section class="container index">
-        <h1>Welcome To Blog App</h1>
-        <a href="/article">Go TO BLog</a>
-      </section>
-    </main>
-  </body>
-</html>
+<% include partials/header %>
+
+<div class="index-page">
+  <h1>Welcome to my Blog</h1>
+  <a href="/articles"> <button>View Articles</button> </a>
+</div>
+
+<% include partials/footer %>

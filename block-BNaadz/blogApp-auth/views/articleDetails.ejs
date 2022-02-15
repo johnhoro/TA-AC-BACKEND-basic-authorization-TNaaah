@@ -57,16 +57,22 @@
     <hr />
     <% article.comments.forEach(comment => { %>
     <div class="comment-box">
-      <h5><%= comment.author %></h5>
+      <h5><%= comment.author.firstname %></h5>
       <span><%= comment.content %></span>
+      <% if (userId=== comment.author.id) { %>
       <span><a href="/comments/<%= comment.id %>/edit">Edit</a></span>
       <span><a href="/comments/<%= comment.id %>/delete">Delete</a></span>
+      <% } %>
       <span class="likes">
         <a href="/comments/<%= comment.id %>/like"
           ><i class="far fa-thumbs-up"></i><%= comment.likes %></a
         >
       </span>
-      <span><a href="/comments/<%= comment.id %>/dislike"> Dislike </a></span>
+      <span
+        ><a href="/comments/<%= comment.id %>/dislike"
+          ><i class="fa-solid fa-thumbs-down"></i> Dislike
+        </a></span
+      >
     </div>
     <% }) %>
   </div>

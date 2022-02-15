@@ -27,20 +27,23 @@ router.get("/new", auth.loggdInUser, (req, res) => {
 });
 
 router.get("/:slug", (req, res, next) => {
+  var userId = req.session.userId;
   let givenSlug = req.params.slug;
   var error = req.flash("error")[0];
   Article.findOne({ slug: givenSlug })
-    .populate("comments")
+    .populate({ path: `comments`, populate: { path: `author` } })
     .populate("author", "firstname lastname fullName email")
     .exec((err, article) => {
       console.log(article);
       if (err) return next(err);
-      Comment.find({ articleId: article.id })
-        .populate("author", "firstname lastname fullName")
-        .exec((err, comments) => {
-          if (err) return next(err);
-          res.render("articleDetails", { article, comments, error });
-        });
+      // Comment.find({ articleId: article.id })
+      //   .populate("author", "firstname lastname fullName")
+      //   .exec((err, comments) => {
+      //     if (err) return next(err);
+      //     res.render("articleDetails", { article, comments, error });
+      //   });
+      // res.json({ article });
+      res.render("articleDetails", { article, error, userId });
     });
 });
 
