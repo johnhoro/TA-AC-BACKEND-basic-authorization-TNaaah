@@ -147,27 +147,29 @@ a {
 }
 h2 {
   font-size: 1.5rem;
-  margin: 1rem 0;
 }
 
 /* HEADER */
 
 header {
-  background-color: rgb(44, 33, 93);
-}
-.header {
-  display: flex;
-  justify-content: space-between;
+  background-color: rgb(55, 65, 81);
   padding: 1rem;
 }
 
-.header ul {
+.header {
   display: flex;
   justify-content: space-between;
 }
-.navbar ul li a {
+.navbar a {
   margin-left: 1rem;
+}
+.btn {
+  background-color: rgb(149, 149, 149);
   color: white;
+  padding: 0.4rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
 }
 
 /* INDEX  Page*/
@@ -187,12 +189,26 @@ header {
   padding: 0.4rem;
   background-color: rgb(44, 33, 93);
 }
+
+/* DASHBOARD */
+
+.dashboard h1 {
+  text-align: center;
+}
+
+/* LOGIN */
+.login h2 {
+  text-align: center;
+}
+.login form {
+  width: 500px;
+}
+
 /* SIGNUP */
 
-.signup h1 {
-  font-size: 1.2rem;
+.signup h2 {
+  font-size: 1.5rem;
   text-align: center;
-  margin-top: 2rem;
 }
 
 form {
@@ -209,4 +225,56 @@ input {
 
 .btn-submit {
   padding: 0.4rem;
+}
+
+.comment {
+  margin-left: 0;
+}
+.comment-box {
+  margin: 0.8rem 0;
+}
+.comment-box span a {
+  color: black;
+}
+/* ALL-ARTICLE */
+.all-article-box {
+  background-color: rgb(229, 231, 235);
+  padding: 1rem;
+}
+.all-article {
+  padding: 1rem;
+  background-color: rgb(200, 202, 206);
+  box-shadow: 5px 5px 5px #aaaaaa;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+}
+.all-article h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.btn-read {
+  color: white;
+  margin-top: 0.7rem;
+  border: none;
+  padding: 0.3rem 0.5rem;
+  background-color: rgb(55, 65, 81);
+  border-radius: 10px;
+}
+.detail-article {
+  background-color: rgb(229, 231, 235);
+}
+
+.single-article-box {
+  box-shadow: 5px 5px 5px #aaaaaa;
+  padding: 2rem;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin-top: 1rem;
+  padding-bottom: 0.6rem;
+}
+h5 {
+  font-size: 1.3rem;
+  padding-bottom: 0.6rem;
 }

@@ -1,16 +1,17 @@
 var mongoose = require("mongoose");
+
 var Schema = mongoose.Schema;
-var comment = new Schema(
+
+var commentSchema = new Schema(
   {
-    name: { type: String, required: true },
-    title: { type: String, required: true },
-    userId: { type: Schema.Types.ObjectId, ref: "Users", required: true },
-    like: [{ type: Schema.Types.ObjectId, ref: "Users" }],
-    aticleId: { type: Schema.Types.ObjectId, ref: "Article" },
+    content: String,
+    articleId: { type: Schema.Types.ObjectId, ref: "Article", required: true },
+    likes: { type: Number, default: 0 },
+    author: { type: Schema.Types.ObjectId, ref: "User", required: true },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("Comment", comment);
+var Comment = mongoose.model("Comment", commentSchema);
+
+module.exports = Comment;

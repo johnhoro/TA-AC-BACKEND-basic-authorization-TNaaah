@@ -1,158 +1,144 @@
 var express = require("express");
-var router = express.Router();
 var Article = require("../models/Article");
 var Comment = require("../models/Comment");
-var Users = require("../models/User");
+var User = require("../models/User");
 var auth = require("../middleware/auth");
 
-//list article
+var router = express.Router();
 
+// Routes Without Authorisation
 router.get("/", (req, res, next) => {
-  console.log(req.user);
-  var session = req.session.userId;
-  Article.find({}, (err, content) => {
-    if (err) next(err);
-    Users.findById(session, (err, user) => {
-      if (err) return next(err);
-      return res.render("articles", {
-        articles: content,
-        session: session,
-        user: user,
-      });
-    });
+  Article.find({}, (err, articles) => {
+    if (err) return next(err);
+    res.render("articles", { articles });
   });
 });
 
-router.get("/:slug/detail", (req, res, next) => {
-  let slug = req.params.slug;
-  var session = req.session.userId;
-  Article.findById(slug)
+router.get("/my-articles", auth.loggdInUser, (req, res, next) => {
+  let currentUserId = req.user.id;
+  Article.find({ author: currentUserId }, (err, articles) => {
+    if (err) return next(err);
+    res.render("articles", { articles });
+  });
+});
+
+router.get("/new", auth.loggdInUser, (req, res) => {
+  res.render("addArticle");
+});
+
+router.get("/:slug", (req, res, next) => {
+  let givenSlug = req.params.slug;
+  var error = req.flash("error")[0];
+  Article.findOne({ slug: givenSlug })
     .populate("comments")
-    .populate("authorId", "firstname email")
-    .exec((err, content) => {
-      console.log(err, content);
+    .populate("author", "firstname lastname fullName email")
+    .exec((err, article) => {
+      console.log(article);
       if (err) return next(err);
-      res.render("detail", { data: content, session });
+      Comment.find({ articleId: article.id })
+        .populate("author", "firstname lastname fullName")
+        .exec((err, comments) => {
+          if (err) return next(err);
+          res.render("articleDetails", { article, comments, error });
+        });
     });
 });
 
-router.use(auth.loggedInUser);
-
-router.get("/new", (req, res, next) => {
-  return res.render("newArticle");
-});
+router.use(auth.loggdInUser);
 
 router.post("/", (req, res, next) => {
-  req.body.authorId = req.session.userId;
-  Article.create(req.body, (err, content) => {
+  req.body.author = req.user.id;
+  req.body.tags = req.body.tags.trim().split(",");
+  Article.create(req.body, (err, createdArticle) => {
     if (err) return next(err);
-    res.redirect("/article");
+    res.redirect("/articles");
   });
 });
 
-router.get("/:slug/like", (req, res, next) => {
-  let slug = req.params.slug;
-  let id = req.session.userId;
-  Article.findOne({ slug, like: { $in: id } }, (err, content) => {
-    if (err) return next(err);
-    let isAlreadyAdded = {
-      $pull: { like: id },
-    };
-    if (!content) {
-      isAlreadyAdded = {
-        $push: { like: id },
-      };
-    }
-    Article.findOneAndUpdate(
-      { slug },
-      { likes: content.likes },
-      { new: true },
-      (err, updateContent) => {
-        if (err) return next(err);
-        res.redirect("/article/" + updateContent._id + "/detail");
-      }
-    );
-  });
-});
+// Increment Likes
+router.get("/:slug/likes", (req, res, next) => {
+  let givenSlug = req.params.slug;
 
-router.get("/:slug/edit", (req, res, next) => {
-  Article.findOne({ slug: req.params.slug }, (err, content) => {
-    if (err) return next(err);
-    if (content.authorId._id.toString() === req.user._id.toString()) {
-      // console.log("hi");
-      // Article.findOneAndUpdate(
-      //   { slug: req.params.slug },
-      //   { new: true },
-      //   (err, updateContent) => {
-      //     if (err) return next(err);
-      //     console.log(updateContent, "update");
-      //     res.render("editArticle", { data: updateContent });
-      //   }
-      // );
-      res.render("editArticle", { data: content });
-    } else {
-      res.redirect("/users/login");
-    }
-  });
-});
-
-router.post("/:slug/edit", (req, res, next) => {
   Article.findOneAndUpdate(
-    { slug: req.params.slug },
-    req.body,
-    { new: true },
-    (err, content) => {
+    { slug: givenSlug },
+    { $inc: { likes: 1 } },
+    (err, article) => {
       if (err) return next(err);
-      console.log(content);
-      res.redirect("/article/" + content.slug);
+      res.redirect("/articles/" + givenSlug);
     }
   );
 });
 
-router.get("/:id/delete", (req, res, next) => {
-  var id = req.params.id;
-  Article.findById(id, (err, content) => {
+// Update Article
+router.get("/:slug/edit", (req, res, next) => {
+  let givenSlug = req.params.slug;
+  let currentUserId = req.user.id;
+  Article.findOne({ slug: givenSlug }, (err, article) => {
     if (err) return next(err);
-    if (content.authorId._id.toString() === req.user._id.toString()) {
-      Article.findByIdAndDelete(id, (err, content) => {
-        if (err) return next(err);
-        Comment.deleteMany({ articleId: id }, (err, content) => {
-          if (err) return next(err);
-          console.log(content);
-          res.redirect("/article");
-        });
-      });
+    if (currentUserId !== article.author.toString()) {
+      req.flash("error", "You Are Not Authorised to Edit this Article!");
+      res.redirect("/articles/" + givenSlug);
     } else {
-      res.redirect("/users/login");
+      Article.findOne({ slug: givenSlug }, (err, article) => {
+        console.log(article);
+        if (err) return next(err);
+        res.render("editArticle", { article });
+      });
     }
   });
 });
 
-router.post("/:id/comment", (req, res, next) => {
-  req.body.aticleId = req.params.id;
-  req.body.userId = req.user._id;
-  Comment.create(req.body, (err, content) => {
+router.post("/:slug", (req, res, next) => {
+  let givenSlug = req.params.slug;
+  req.body.tags = req.body.tags.trim().split(",");
+  let userId = req.user.id;
+  Article.findOneAndUpdate(
+    { slug: givenSlug },
+    req.body,
+    (err, updatedArticle) => {
+      if (err) return next(err);
+      res.redirect("/articles");
+    }
+  );
+});
+// Delete Article
+router.get("/:slug/delete", (req, res, next) => {
+  let givenSlug = req.params.slug;
+  currentUserId = req.user.id;
+  Article.findOne({ slug: givenSlug }, (err, article) => {
+    if (err) return next(err);
+    if (currentUserId !== article.author.toString()) {
+      req.flash("error", "You Are Not Authorised to Delete this Article!");
+      res.redirect("/articles/" + givenSlug);
+    } else {
+      Article.findOneAndDelete({ slug: givenSlug }, (err, deletedArticle) => {
+        if (err) return next(err);
+        Comment.deleteMany({ articleId: deletedArticle._id }, (err, info) => {
+          if (err) return next(err);
+          res.redirect("/articles");
+        });
+      });
+    }
+  });
+});
+// Add comment
+router.post("/:id/comments", (req, res, next) => {
+  let id = req.params.id;
+  req.body.articleId = id;
+  req.body.author = req.user._id;
+  Comment.create(req.body, (err, comment) => {
+    console.log(comment);
     if (err) return next(err);
     Article.findByIdAndUpdate(
-      req.params.id,
-      { $push: { comments: content._id } },
-      (err, article) => {
+      id,
+      { $push: { comments: comment._id } },
+      (err, updatedArticle) => {
         if (err) return next(err);
-        res.redirect("/article/" + article.slug);
+        let givenSlug = updatedArticle.slug;
+        res.redirect("/articles/" + givenSlug);
       }
     );
   });
-});
-
-router.get("/:slug", (req, res, next) => {
-  var slug = req.params.slug;
-  var session = req.session.userId;
-  Article.findOne({ slug })
-    .populate("comments")
-    .exec((err, content) => {
-      if (err) return next(err);
-      res.render("detail", { data: content, session });
-    });
 });
 
 module.exports = router;

@@ -1,0 +1,74 @@
+<% include partials/header %>
+<main class="detail-article">
+  <section>
+    <div class="container single-article-box">
+      <h1><%= article.title %></h1>
+      <h4>
+        Author:- <%= article.author.firstname+ " "+ article.author.lastname %>
+      </h4>
+      <div>
+        Tags: <% article.tags.forEach( tag => { %>
+        <span><%= tag %></span>
+        <% }) %>
+      </div>
+      <p><%= article.description %></p>
+
+      <p>Likes: <%= article.likes ? article.likes : 0 %></p>
+      <div>
+        <a href="/articles/<%= article.slug %>/likes">
+          <button class="btn-read">Like</button>
+        </a>
+        <a href="/articles/<%= article.slug %>/edit">
+          <button class="btn-read">Edit Article</button>
+        </a>
+        <a href="/articles/<%= article.slug %>/delete">
+          <button class="btn-read">Delete Article</button>
+        </a>
+        <a href="/articles">
+          <button class="btn-read">Go to Home</button>
+        </a>
+        <% if(error) { %>
+        <p><%= error %></p>
+        <% } %>
+      </div>
+    </div>
+  </section>
+
+  <div>
+    <div class="container">
+      <form
+        action="/articles/<%= article.id %>/comments"
+        class="comment"
+        method="POST"
+      >
+        <textarea
+          name="content"
+          name="content"
+          rows="3"
+          placeholder="Add Comment...."
+        ></textarea>
+        <input type="submit" value="Add Comment" />
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Comments</h2>
+    <hr />
+    <% article.comments.forEach(comment => { %>
+    <div class="comment-box">
+      <h5><%= comment.author %></h5>
+      <span><%= comment.content %></span>
+      <span><a href="/comments/<%= comment.id %>/edit">Edit</a></span>
+      <span><a href="/comments/<%= comment.id %>/delete">Delete</a></span>
+      <span class="likes">
+        <a href="/comments/<%= comment.id %>/like"
+          ><i class="far fa-thumbs-up"></i><%= comment.likes %></a
+        >
+      </span>
+      <span><a href="/comments/<%= comment.id %>/dislike"> Dislike </a></span>
+    </div>
+    <% }) %>
+  </div>
+</main>
+<% include partials/footer %>

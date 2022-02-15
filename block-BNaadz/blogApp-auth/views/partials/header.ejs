@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlogApp</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container header">
+        <a href="/articles">
+          <h2>BlogApp</h2>
+        </a>
+        <% if(user) { %>
+        <nav class="navbar">
+          <a href=""><%= user.firstname+` `+user.lastname %></a>
+          <a href="/articles/my-articles">
+            <button class="btn">My Articles</button>
+          </a>
+          <a href="/articles">
+            <button class="btn">List Of Article</button>
+          </a>
+          <a href="/articles/new">
+            <button class="btn">Add new Article</button>
+          </a>
+          <a href="/users/logout"> Logout </a>
+        </nav>
+        <% } else { %>
+
+        <nav>
+          <a href="/articles">
+            <button>List Of Article</button>
+          </a>
+          <a href="/users/login">
+            <button>Login</button>
+          </a>
+          <a href="/users/register"> Register </a>
+        </nav>
+        <% } %>
+      </div>
+    </header>
+  </body>
+</html>

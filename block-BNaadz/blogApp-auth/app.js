@@ -3,41 +3,43 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var mongoose = require(`mongoose`);
-var session = require(`express-session`);
-var MongoStore = require(`connect-mongo`)(session);
-var flash = require(`connect-flash`);
+var mongoose = require("mongoose");
+var session = require("express-session");
+var MongoStore = require("connect-mongo")(session);
+var flash = require("connect-flash");
 
-require(`dotenv`).config();
+require("dotenv").config();
 
 var indexRouter = require("./routes/index");
+var articleRouter = require("./routes/article");
+var commentRouter = require("./routes/comment");
 var usersRouter = require("./routes/users");
-var articleRouter = require(`./routes/article`);
-var commentRouter = require(`./routes/comment`);
-var auth = require(`./middleware/auth`);
+var auth = require("./middleware/auth");
 
-//connected to database
+// Connect with database
 mongoose.connect(
-  `mongodb://localhost/blogApp-auth`,
+  "mongodb://localhost/blogApp-auth",
   { useNewUrlParser: true, useUnifiedTopology: true },
   (err) => {
-    console.log(err ? err : `connected true`);
+    console.log(err ? err : "Connected to Databse");
   }
 );
 
+// Instantiate Express server
 var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// Common Middlewares
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-// add session
+// Add Sessions
 app.use(
   session({
     secret: process.env.SECRET,
@@ -50,11 +52,12 @@ app.use(
 app.use(flash());
 
 app.use(auth.userInfo);
-
+// Routes
 app.use("/", indexRouter);
+app.use("/articles", articleRouter);
 app.use("/users", usersRouter);
-app.use(`/article`, articleRouter);
-app.use(`/comment`, commentRouter);
+app.use(auth.loggdInUser);
+app.use("/comments", commentRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

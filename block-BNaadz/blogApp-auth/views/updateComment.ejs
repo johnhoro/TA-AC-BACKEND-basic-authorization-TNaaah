@@ -1,0 +1,18 @@
+<% include partials/header %>
+<div class="text-center">
+  <a href="/articles">
+    <button>Back</button>
+  </a>
+</div>
+<div>
+  <form action="/comments/<%= comment.id %>" method="POST">
+    <h2>Update Comment</h2>
+    <textarea name="content" rows="6" placeholder="Update Comment">
+                <%= comment.content %></textarea
+    >
+    <div class="text-center">
+      <button>Update Comment</button>
+    </div>
+  </form>
+</div>
+<% include partials/footer %>
