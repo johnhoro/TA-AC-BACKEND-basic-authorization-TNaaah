@@ -20,13 +20,11 @@ userSchema.pre("save", function (next) {
     bcrypt.hash(this.password, 10, (err, hashed) => {
       if (err) return next(err);
       this.password = hashed;
-
       if (this.isAdmin === "admin") {
         this.isAdmin = "true";
       } else if (this.isAdmin === "user") {
         this.isAdmin = "false";
       }
-
       return next();
     });
   } else {

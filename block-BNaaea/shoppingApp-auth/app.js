@@ -54,11 +54,14 @@ app.use(
 
 app.use(flash());
 
+app.use(auth.userInfo);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use(`/home`, homeRouter);
 app.use(`/client`, clientRouter);
+
+app.use(auth.isAdmin);
 app.use(`/admin`, adminRouter);
 
 // catch 404 and forward to error handler

@@ -12,6 +12,7 @@
       <div class="header">
         <img class="logo" src="/images/new.png" alt="logo" />
         <nav class="navbar">
+          <a href=""><%= user.fullName %> </a>
           <a href="/client/product/list">Shop now</a>
           <a href="/client/product/cart"> cart</a>
           <a href="/users/logout">Logout</a>
@@ -20,9 +21,8 @@
     </header>
     <main>
       <div class="client-home">
-        <h2>Welcome User</h2>
+        <h2>Welcome <%= user.fullName %></h2>
         <a href="/client/product/list">Start Shopping</a>
-        <span><%= error %> </span>
       </div>
     </main>
   </body>
