@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <img class="logo" src="/images/new.png" alt="logo" />
+        <nav class="navbar">
+          <a href="/admin/product/new">Add new product</a>
+          <a href="/admin/product/list">product list</a>
+          <a href="/admin/product/details/<%= product.id  %>">Back</a>
+          <a href="/users/logout">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="admit-edit-product">
+        <h2>Admin Product Edit page</h2>
+        <div>
+          <form
+            action="/admin/product/<%= product.id  %>/edit"
+            class="admit-edit-product"
+            method="POST"
+          >
+            <h3>Edit Product Details</h3>
+            <input
+              type="text"
+              placeholder="Name"
+              name="name"
+              value="<%= product.name %>"
+            />
+            <input
+              type="number"
+              placeholder="quantity"
+              name="quantity"
+              value="<%= product.quantity %>"
+            />
+            <input
+              type="number"
+              placeholder="price"
+              name="price"
+              value="<%= product.price %>"
+            />
+            <input
+              type="text"
+              placeholder="Category"
+              name="category"
+              value="<%= product.category %>"
+            />
+            <input
+              type="text"
+              placeholder="image url"
+              name="image"
+              value="<%= product.imageUrl %>"
+            />
+            <div class="btn-submit">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
