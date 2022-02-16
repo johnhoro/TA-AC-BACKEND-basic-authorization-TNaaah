@@ -162,6 +162,9 @@ header {
 .center {
   text-align: center;
 }
+.red {
+  color: red;
+}
 h1 {
   font-size: 1.7rem;
   margin-top: 2rem;

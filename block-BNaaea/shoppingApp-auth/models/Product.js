@@ -12,7 +12,6 @@ var productSchema = new Schema({
   likes: { types: Number, default: 0 },
   tags: String,
   category: { type: String },
-  // comments: [{ type: String }],
   createdBy: { type: Schema.Types.ObjectId, ref: "User" },
 });
 

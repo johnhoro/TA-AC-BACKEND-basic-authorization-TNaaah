@@ -21,10 +21,14 @@
       <section class="admit-edit-product">
         <h2>Login</h2>
         <form action="/users/login" method="POST">
-          <% if(error) { %>
-          <p><%= error %></p>
-          <% } %>
+          <% if(ep){ %>
+          <p class="red"><%= ep %></p>
+          <% } %> <% if(email){ %>
+          <p class="red"><%= email %></p>
           <input type="email" name="email" placeholder="Email" />
+          <% } %> <% if(password){ %>
+          <p class="red"><%= password %></p>
+          <% } %>
           <input type="password" name="password" placeholder="Password" />
           <button type="submit">Login</button>
         </form>
