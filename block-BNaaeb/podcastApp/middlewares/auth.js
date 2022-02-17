@@ -18,7 +18,7 @@ module.exports = {
         next();
       });
     } else {
-      req.User = null;
+      req.user = null;
       res.locals.user = null;
       next();
     }
