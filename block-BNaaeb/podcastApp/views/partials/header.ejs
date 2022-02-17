@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Podcast App</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <a href="/home">
+          <h2 class="text-white">AltPodcast</h2>
+        </a>
+        <% if(user) { %>
+        <nav class="navbar">
+          <a href=""><%= user.name %></a>
+          <a href="/users/logout"> Logout </a>
+        </nav>
+      </div>
+      <% } else { %>
+      <nav class="navbar">
+        <a href="/users/login"> Login </a>
+        <a href="/users/register"> Register </a>
+      </nav>
+      <% } %>
+    </header>
+  </body>
+</html>

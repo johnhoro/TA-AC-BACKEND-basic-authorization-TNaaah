@@ -1,0 +1,84 @@
+<%- include('partials/header') %>
+
+<main>
+  <section class="sec-padding hero-sec">
+    <h1 class="text-center">
+      Welcome <span class="color-sec"><%= user.name %> </span> to podcast
+      Details page
+    </h1>
+  </section>
+  <section class="sec-padding">
+    <h2 class="text-center"><%= podcast.name %></h2>
+    <div class="flex center sec-padding">
+      <a href="/admin/listOfPodcast" class="btn btn-ter">Back to list</a>
+    </div>
+    <div class="flex center sec-padding">
+      <div class="podcastDetails card">
+        <div class="img-div">
+          <img src="<%= podcast.image %> " alt="image" class="flexi-img" />
+        </div>
+        <div class="data-div">
+          <h3 class="text-center">
+            Created By:-
+            <span class="color-pri"> <%= podcast.createdBy.name %></span>
+          </h3>
+          <h4 class="text-center">
+            Podcast link:-
+
+            <a class="btn btn-ter" href="<%= podcast.video  %>">Link</a>
+          </h4>
+
+          <h4 class="text-center">
+            Created for type:-
+            <span class="color-sec"><%= podcast.forUserType %> </span> User
+          </h4>
+          <!-- for likes -->
+          <% if(user.id!==podcast.createdBy.id){ %>
+          <div class="flex jsb max-width-400">
+            <h4 class="text-center">
+              Likes :- <span class="color-pri"><%= podcast.likes %> </span>
+            </h4>
+            <div class="btn-div">
+              <a
+                href="/podcast/<%= podcast.id  %>/likes/like"
+                class="btn btn-pri"
+                >Like</a
+              >
+              <a
+                href="/podcast/<%= podcast.id  %>/likes/dislike"
+                class="btn btn-sec"
+                >Dislike</a
+              >
+            </div>
+          </div>
+          <% } %> <% if(user.id===podcast.createdBy.id){ %>
+          <h4 class="text-center">
+            Likes :- <span class="color-pri"><%= podcast.likes %> </span>
+          </h4>
+          <% } %>
+          <!-- for editing page -->
+          <% if(user.id===podcast.createdBy.id){ %>
+          <div class="flex center btn-div">
+            <a href="/podcast/<%= podcast.id  %>/edit" class="btn btn-pri"
+              >Edit</a
+            >
+            <a href="/podcast/<%= podcast.id  %>/delete" class="btn btn-sec"
+              >Delete</a
+            >
+          </div>
+          <% } %> <% if(podcast.verified===false){ %>
+          <div class="flex center">
+            <a
+              href="/admin/podcast/<%= podcast.id  %>/verify"
+              class="btn btn-pri"
+              >Click here to Verify</a
+            >
+          </div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

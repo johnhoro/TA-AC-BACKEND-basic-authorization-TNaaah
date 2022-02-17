@@ -1,0 +1,20 @@
+var express = require(`express`);
+var auth = require(`../middlewares/auth`);
+var router = express.Router();
+
+//get home page
+router.get(`/`, auth.isLoggedIn, function (req, res, next) {
+  var userType = req.user.userType;
+  if (userType === `admin`) {
+    return res.redirect(`/admin`);
+  } else if (
+    userType === `vip` ||
+    userType === `premium` ||
+    userType === `free`
+  ) {
+    return res.redirect(`/client`);
+  }
+  return res.redirect(`/users/login`);
+});
+
+module.exports = router;

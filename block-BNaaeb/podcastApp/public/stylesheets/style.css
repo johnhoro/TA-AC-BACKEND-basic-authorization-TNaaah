@@ -1,0 +1,139 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: rgb(245, 245, 220);
+}
+
+a {
+  color: #00b7ff;
+}
+.red {
+  color: red;
+}
+
+.flex {
+  display: flex;
+}
+.item-center {
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 0.5rem 1rem;
+  color: white;
+}
+.header a {
+  text-decoration: none;
+}
+.navbar a {
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+/* PODCAST-LIST */
+.podcast-list {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  background-color: black;
+}
+.podcast {
+  background-color: rgb(246, 246, 246);
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+}
+.podcast img {
+  width: 50%;
+}
+h1 {
+  text-align: center;
+}
+.podcast-btn a {
+  padding: 0 1rem;
+  text-decoration: none;
+  color: brown;
+}
+
+/* ADMIN-DASHBOARD */
+.admin-dashboard {
+  display: flex;
+  justify-content: center;
+}
+.admin-dashboard a {
+  padding: 1rem;
+}
+
+h2 {
+  text-align: center;
+}
+
+/* LOGIN-FORM */
+.user-login form {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 0 auto;
+}
+
+input {
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.btn-submit {
+  padding: 0.6rem;
+}
+
+/* CLIENT-HOME-PAGE */
+.client-home a {
+  padding: 1rem;
+}
+
+.back-btn {
+  padding: 1rem 0;
+}
+.back-btn a {
+  color: black;
+}
+
+.edit-btn a {
+  color: white;
+  background-color: black;
+  margin-right: 1.3rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+}
+
+.admin-create-podcast form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: rgb(229, 231, 235);
+}
+
+label {
+  margin-bottom: 0.4rem;
+}
+.submit {
+  margin: 0 auto;
+}
+.submit button {
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 10px;
+}

@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<main>
+  <section>
+    <h1>Welcome <span><%= user.name %> </span> to create new podcast</h1>
+  </section>
+  <section>
+    <h2>Podcast Create Form</h2>
+    <div class="admin-create-podcast">
+      <form action="/admin/newPodcast" method="POST">
+        <label for="name">Enter Name</label>
+        <input type="text" name="name" placeholder="Enter name" />
+        <label for="image">Enter Image URL</label>
+        <input type="text" name="image" placeholder="Enter image url" />
+        <label for="">Created For</label>
+        <div>
+          <input type="radio" id="free" name="forUserType" value="free" />
+          <label for="free" class="text-sm">Free</label>
+        </div>
+        <div>
+          <input type="radio" id="vip" name="forUserType" value="vip" />
+          <label for="vip" class="text-sm">VIP</label>
+        </div>
+        <div>
+          <input type="radio" id="premium" name="forUserType" value="premium" />
+          <label for="premium" class="text-sm">PREMIUM</label>
+        </div>
+        <label for="video">Enter Video URL</label>
+        <input type="text" name="video" placeholder="Enter video url" />
+        <div class="submit">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
