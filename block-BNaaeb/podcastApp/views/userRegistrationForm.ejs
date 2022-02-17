@@ -4,9 +4,6 @@
   <section>
     <h2>Registration</h2>
     <form action="/users/register" method="POST">
-      <% if(error) { %>
-      <p class="text-red-500"><%= error %></p>
-      <% } %>
       <input type="text" name="name" placeholder="Enter your Name" />
       <% if (email) { %>
       <input type="email" name="email" placeholder="Email" />

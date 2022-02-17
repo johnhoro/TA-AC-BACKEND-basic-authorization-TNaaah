@@ -62,7 +62,6 @@ router.get(`/:id/delete`, (req, res, next) => {
 router.get(`/:id/likes/:method`, auth.isLoggedIn, (req, res, next) => {
   var podcastId = req.params.id;
   var method = req.params.method;
-
   if (method === `like`) {
     Podcast.findByIdAndUpdate(
       podcastId,
@@ -70,9 +69,9 @@ router.get(`/:id/likes/:method`, auth.isLoggedIn, (req, res, next) => {
       (err, updated) => {
         if (err) return next(err);
         if (req.user.userType === `admin`) {
-          res.redirect(`/admin/podcast` + podcastId);
+          res.redirect(`/admin/podcast/` + podcastId);
         } else {
-          res.redirect(`/client/podcast` + podcastId);
+          res.redirect(`/client/podcast/` + podcastId);
         }
       }
     );
