@@ -1,0 +1,20 @@
+<% include partials/header %>
+
+<main>
+  <section class="user-login">
+    <h2>Login</h2>
+    <form action="/users/login" method="POST">
+      <% if(ep){ %>
+      <p class="red"><%= ep %></p>
+      <% } %> <% if(email){ %>
+      <p class="red"><%= email %></p>
+      <input type="email" name="email" placeholder="Email" />
+      <% } %> <% if(password){ %>
+      <p class="red"><%= password %></p>
+      <% } %>
+      <input type="password" name="password" placeholder="Password" />
+      <button class="btn-submit" type="submit">Login</button>
+    </form>
+  </section>
+</main>
+<% include partials/footer %>

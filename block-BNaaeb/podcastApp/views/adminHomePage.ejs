@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<main>
+  <section>
+    <h1>Welcome <span><%= user.name %> </span> to admin dashboard</h1>
+  </section>
+  <section>
+    <h2>This is Dashboard page</h2>
+    <div class="admin-dashboard">
+      <a href="/admin/newPodcast">Create New Podcast</a>
+      <a href="/admin/listOfPodcast">List Of Podcasts</a>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
