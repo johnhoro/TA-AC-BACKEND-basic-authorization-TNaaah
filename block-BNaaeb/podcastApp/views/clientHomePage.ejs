@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<main>
+  <section>
+    <h1>Welcome <span><%= user.name %> </span> to client dashboard</h1>
+  </section>
+  <section>
+    <h2>This is Dashboard page</h2>
+    <div class="client-home flex item-center">
+      <a href="/client/listOfPodcast/<%= user.userType %>">List of podcasts</a>
+      <a href="/client/newPodcast">createNew</a>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

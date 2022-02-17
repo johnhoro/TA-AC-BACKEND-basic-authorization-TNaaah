@@ -1,0 +1,37 @@
+<%- include('partials/header') %>
+
+<main>
+  <section class="sec-padding hero-sec">
+    <h1 class="text-center">
+      Welcome <span class="color-sec"><%= user.name %> </span> to create new
+      podcast
+    </h1>
+  </section>
+  <section class="sec-padding">
+    <h2 class="text-center">Podcast Create Form</h2>
+
+    <div class="flex center sec-padding">
+      <form action="/client/newPodcast" method="POST" class="card">
+        <fieldset>
+          <label for="name">Enter Name</label>
+          <input type="text" name="name" placeholder="Enter name" />
+        </fieldset>
+        <fieldset>
+          <label for="image">Enter Image URL</label>
+          <input type="text" name="image" placeholder="Enter image url" />
+        </fieldset>
+
+        <fieldset>
+          <label for="video">Enter Video URL</label>
+          <input type="text" name="video" placeholder="Enter video url" />
+        </fieldset>
+
+        <a href="#"
+          ><button class="btn btn-pri" type="submit">Submit</button></a
+        >
+      </form>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+
+<main>
+  <section>
+    <h1>Welcome <span><%= user.name %> </span> to podcast list page</h1>
+  </section>
+  <section>
+    <div class="flex item-center podcast-btn">
+      <a href="/client/listOfPodcast/<%= user.userType  %>">All Podcasts</a>
+      <a href="/client/listOfPodcast/myOwn">My Podcasts</a>
+    </div>
+    <div>
+      <h2>All <span><%= user.userType %> </span> Podcasts</h2>
+      <div class="podcast-list">
+        <% podcasts.forEach(podcast=>{ %>
+        <article class="podcast">
+          <div class="flex item-center">
+            <img src="<%= podcast.image  %>" alt="podcast img" />
+          </div>
+          <div>
+            <h4>Title:- <span> <%= podcast.name %></span></h4>
+          </div>
+          <div>
+            <a href="/client/podcast/<%= podcast.id  %>">More Details</a>
+          </div>
+        </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>

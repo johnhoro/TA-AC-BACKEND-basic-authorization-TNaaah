@@ -1,0 +1,32 @@
+<% include partials/header %>
+
+<main>
+  <section>
+    <h2>Registration</h2>
+    <form action="/users/register" method="POST">
+      <input type="text" name="name" placeholder="Enter your Name" />
+      <% if (email) { %>
+      <input type="email" name="email" placeholder="Email" />
+      <p class="red"><%= exist %></p>
+      <% } %>
+      <label for="">Choose Account type</label>
+      <fieldset class="flex flex-wrap justify-between">
+        <input type="radio" id="free" name="userType" value="free" />
+        <label for="free" class="text-sm">Free</label><br />
+        <input type="radio" id="vip" name="userType" value="vip" />
+        <label for="vip" class="text-sm">VIP</label><br />
+        <input type="radio" id="premium" name="userType" value="premium" />
+        <label for="premium" class="text-sm">PREMIUM</label>
+        <input type="radio" id="admin" name="userType" value="admin" />
+        <label for="admin" class="text-sm">Admin</label>
+      </fieldset>
+      <% if (min) { %>
+      <input type="password" name="password" placeholder="Password" />
+      <p class="red"><%= min %></p>
+      <% } %>
+      <button type="submit">Register</button>
+    </form>
+  </section>
+</main>
+
+<% include partials/footer %>

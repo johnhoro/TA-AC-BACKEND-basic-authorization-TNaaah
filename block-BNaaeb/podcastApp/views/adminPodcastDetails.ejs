@@ -1,0 +1,64 @@
+<%- include('partials/header') %>
+
+<main>
+  <section>
+    <h1>Welcome <span><%= user.name %> </span> to podcast Details page</h1>
+  </section>
+  <section>
+    <h2><%= podcast.name %></h2>
+    <div class="back-btn">
+      <a href="/admin/listOfPodcast">Back to list</a>
+    </div>
+    <div>
+      <div>
+        <div>
+          <img src="<%= podcast.image %> " alt="image" />
+        </div>
+        <div>
+          <h3>
+            Created By:-
+            <span> <%= podcast.createdBy.name %></span>
+          </h3>
+          <h4>
+            Podcast link:-
+
+            <a href="<%= podcast.video  %>">Link</a>
+          </h4>
+
+          <h4>
+            Created for type:-
+            <span><%= podcast.forUserType %> </span> User
+          </h4>
+          <!-- for likes -->
+          <% if(user.id!==podcast.createdBy.id){ %>
+          <div>
+            <h4>Likes :- <span><%= podcast.likes %> </span></h4>
+            <div class="btn-div">
+              <a href="/podcast/<%= podcast.id  %>/likes/like">Like</a>
+              <a href="/podcast/<%= podcast.id  %>/likes/dislike">Dislike</a>
+            </div>
+          </div>
+          <% } %> <% if(user.id===podcast.createdBy.id){ %>
+          <h4>Likes :- <span><%= podcast.likes %> </span></h4>
+          <% } %>
+          <!-- for editing page -->
+          <% if(user.id===podcast.createdBy.id){ %>
+          <div class="edit-btn">
+            <a href="/podcast/<%= podcast.id  %>/edit">Edit</a>
+            <a href="/podcast/<%= podcast.id  %>/delete">Delete</a>
+          </div>
+          <% } %>
+          <div>
+            <% if(podcast.verified===false){ %>
+            <a href="/admin/podcast/<%= podcast.id  %>/verify"
+              >Click here to Verify</a
+            >
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
