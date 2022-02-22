@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <img class="logo" src="/images/new.png" alt="logo" />
+        <nav class="navbar">
+          <a href="/client/product/cart">View cart</a>
+          <a href="/users/logout">Logout</a>
+        </nav>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="client-product">
+        <div>
+          <h2>All Products</h2>
+        </div>
+        <div class="container article">
+          <% products.forEach(ele=>{ %>
+          <article>
+            <h3><%= ele.name %></h3>
+            <div>
+              <img
+                src="<%= ele.imageUrl  %>"
+                alt="item img"
+              />
+            </div>
+            <div>
+              <h4>
+                Price :- <span>Rs.<%= ele.price %> </span>
+              </h4>
+              <h4>
+                Remaining :-
+                <span><%= ele.quantity %> </span>
+              </h4>
+            </div>
+            <div>
+              <a
+                href="/client/product/<%= ele.id  %>/details"
+                >Details</a
+              >
+            </div>
+          </article>
+          <% }) %>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <img class="logo" src="/images/new.png" alt="logo" />
+        <nav class="navbar">
+          <a href="/admin/product/new">Add new product</a>
+          <a href="/admin/product/list">List of all products</a>
+          <a href="/users/logout">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="admit-edit-product">
+        <div>
+          <h2>Add new Product</h2>
+        </div>
+        <div>
+          <form action="/admin/product/new" method="POST">
+            <h3 class="text-center">Product Details</h3>
+            <input type="text" placeholder="Name" name="name" />
+            <input type="number" placeholder="quantity" name="quantity" />
+            <input type="number" placeholder="price" name="price" />
+            <input type="text" placeholder="Category" name="category" />
+            <input type="text" placeholder="image url" name="imageUrl" />
+            <div class="btn-submit">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

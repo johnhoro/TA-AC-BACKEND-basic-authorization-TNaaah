@@ -1,0 +1,289 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* CUSTUM STYLE */
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: brown;
+  text-decoration: none;
+}
+
+.flex {
+  display: flex;
+}
+header {
+  background-color: rgb(246, 246, 246);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  width: 120px;
+  margin-left: 1rem;
+}
+.navbar a {
+  margin-right: 1rem;
+}
+
+.center {
+  text-align: center;
+}
+.red {
+  color: red;
+}
+h1 {
+  font-size: 1.7rem;
+  margin-top: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* DASHBOARD */
+.dashboard {
+  border-bottom: 1px dashed black;
+  text-align: center;
+  padding: 2rem;
+  margin: 1rem 0;
+}
+.dashboard h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.dashboard a {
+  margin: 0 1rem;
+}
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+.user-list {
+  display: flex;
+  justify-content: space-evenly;
+}
+.user-list ul li {
+  margin-top: 0.7rem;
+}
+
+/* ADMIN HOME PAGE */
+.admin-home-page {
+  margin-top: 2rem;
+  justify-content: space-between;
+}
+
+/* ADMIN-EDIT-PRODUCT */
+
+.admit-edit-product h2 {
+  margin: 1rem 0;
+}
+
+.admit-edit-product form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem auto;
+}
+.admit-edit-product form input {
+  margin: 0.6rem 0;
+  padding: 0.6rem;
+}
+
+.btn-submit {
+  margin: 0 auto;
+}
+
+/* ASIDE */
+.aside {
+  width: 15%;
+  padding: 1rem;
+  background-color: rgb(246, 246, 246);
+}
+
+.article {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(246, 246, 246);
+  flex-wrap: wrap;
+}
+.article article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.article h3 {
+  margin: 1rem 0;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.2rem;
+}
+
+.product {
+  width: 80%;
+  padding: 1rem;
+}
+
+/* CLIENT_HOME */
+
+.client-home {
+  text-align: center;
+}
+.client-home h2 {
+  margin-top: 2rem;
+}
+
+/* CLIENT-PRODUCT-LIST */
+
+.client-product h2 {
+  text-align: center;
+  margin: 1rem;
+}
+
+/* USER-CART */
+.user-cart h2 {
+  margin: 1rem 0;
+}
+
+.cart-item {
+  margin: 1rem 0;
+}
+.cart-item h3 {
+  margin-right: 1rem;
+}
+
+/* CLIENT-PRODUCT-DETAILS */
+.client-product-detail h2 {
+  margin: 1rem 0;
+}

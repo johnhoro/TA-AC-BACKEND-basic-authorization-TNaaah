@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <img class="logo" src="/images/new.png" alt="logo" />
+        <nav class="navbar">
+          <a href="/users/login">Login</a>
+          <a href="/users/register">Register</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="admit-edit-product">
+        <h2>Registration</h2>
+        <form action="/users/register" method="POST">
+          <input type="text" name="firstName" placeholder="First Name" />
+          <input type="text" name="lastName" placeholder="Last Name" />
+          <% if(exist){ %>
+          <input type="email" name="email" placeholder="Email" />
+          
+          <% } %> <% if(min){ %>
+          <input type="password" name="password" placeholder="Password" />
+          <p class="red"><%= min %></p>
+          <% } %>
+          <label for="isAdmin">Admin</label>
+          <input type="radio" name="isAdmin" id="isAdmin" value="admin" />
+          <label for="isAdmin2">User</label>
+          <input type="radio" name="isAdmin" checked="true" value="user" />
+          <button type="submit">Register</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
